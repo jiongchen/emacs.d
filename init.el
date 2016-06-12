@@ -22,7 +22,10 @@
 )
 
 (global-set-key [f9] 'compile)
-(global-set-key "\C-x\C-b" 'buffer-menu)
+;; (global-set-key "\C-x\C-b" 'buffer-menu)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(autoload 'ibuffer "ibuffer" "List buffers." t)
+
 
 (global-linum-mode t)
 (tool-bar-mode -1)
