@@ -35,6 +35,14 @@
 (add-to-list 'load-path' "/home/jerry/.emacs.d")
 
 
+;; C++ mode
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cxx\\'" . c++-mode))
+
+
 ;; Configure package
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
