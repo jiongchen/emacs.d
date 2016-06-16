@@ -29,7 +29,7 @@
 
 (global-linum-mode t)
 (tool-bar-mode -1)
-
+(setq column-number-mode t)
 
 ;; load path
 (add-to-list 'load-path' "/home/jerry/.emacs.d")
