@@ -115,3 +115,16 @@
 (autoload 'imath-mode "imath" "Imath mode for math formula input" t)
 (setq imaxima-use-maxima-mode-flag t)
 (add-to-list 'auto-mode-alist '("\\.ma[cx]" . maxima-mode))
+
+
+;; Flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+
+;; Swith-window
+;; (require 'switch-window)
+;; (global-set-key (kbd "C-x o") 'switch-window)
+
+
+;; Eletric pair
+(electric-pair-mode 1)

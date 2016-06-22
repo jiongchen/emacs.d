@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <16/06/06 12:36:27 /home/jerry/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <16/06/17 15:45:26 /home/jerry/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -13,4 +13,5 @@
   ("readlink" "\\readlink")
   ("stat" "\\stat")
   ("id" "/usr/bin/id")
-  ("gid-integer" 0)))
+  ("gid-integer" 0)
+  ("uid-integer" 0)))
