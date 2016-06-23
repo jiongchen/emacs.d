@@ -128,3 +128,7 @@
 
 ;; Eletric pair
 (electric-pair-mode 1)
+
+
+;; 
+(setq compilation-scroll-output t)
