@@ -30,6 +30,7 @@
 (global-linum-mode t)
 (tool-bar-mode -1)
 (setq column-number-mode t)
+(setq confirm-kill-emacs 'y-or-n-p)
 
 ;; load path
 (add-to-list 'load-path' "/home/jerry/.emacs.d")
