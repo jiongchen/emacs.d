@@ -33,7 +33,7 @@
 (setq confirm-kill-emacs 'y-or-n-p)
 
 ;; load path
-(add-to-list 'load-path' "/home/jerry/.emacs.d")
+(add-to-list 'load-path' "~/.emacs.d/local")
 
 
 ;; C++ mode
@@ -67,7 +67,7 @@
 	   '(("CMakeLists\\.txt\\'" . cmake-mode))
 	   '(("\\.cmake\\'" . cmake-mode))
 	   auto-mode-alist))
-(autoload 'cmake-mode "/home/jerry/.emacs.d/cmake-mode.el" t)
+(autoload 'cmake-mode "~/.emacs.d/local/cmake-mode.el" t)
 
 
 
@@ -103,7 +103,7 @@
 
 
 ;; Rainbow delimiters
-(add-to-list 'load-path "/home/jerry/.emacs.d/elpa/rainbow-delimiters-2.1.3")
+(add-to-list 'load-path "~/.emacs.d/elpa/rainbow-delimiters-2.1.3")
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
