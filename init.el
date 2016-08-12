@@ -133,3 +133,43 @@
 
 ;; 
 (setq compilation-scroll-output t)
+
+
+;; avoid jump when scrolling
+(setq scroll-margin 3
+      scroll-conservatively 10000)
+
+;; automatic expand
+(global-set-key [(meta ?/)] 'hippie-expand)
+(setq hippie-expand-try-functions-list
+      '(try-expand-dabbrev
+	try-expand-dabbrev-visible
+	try-expand-dabbrev-all-buffers
+	try-expand-dabbrev-from-kill
+	try-complete-file-name-partially
+	try-complete-file-name
+	try-expand-all-abbrevs
+	try-expand-list
+	try-expand-line
+	try-complete-lisp-symbol-partially
+	try-complete-lisp-symbol))
+
+;; mark and jump
+(global-set-key [(control ?\.)] 'ska-point-to-register)
+(global-set-key [(control ?\,)] 'ska-jump-to-register)
+(defun ska-point-to-register()
+  "Store cursorposition _fast_ in a register.
+Use ska-jump-to-register to jump back to the stored
+position."
+  (interactive)
+  (setq zmacs-region-stays t)
+  (point-to-register 8))
+
+(defun ska-jump-to-register()
+  "Switches between current cursorposition and position
+that was stored with ska-point-to-register."
+  (interactive)
+  (setq zmacs-region-stays t)
+  (let ((tmp (point-marker)))
+        (jump-to-register 8)
+        (set-register 8 tmp)))
