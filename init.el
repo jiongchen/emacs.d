@@ -173,3 +173,12 @@ that was stored with ska-point-to-register."
   (let ((tmp (point-marker)))
         (jump-to-register 8)
         (set-register 8 tmp)))
+
+
+;; yasnippet
+(add-to-list 'load-path "~/.emacs.d/elpa/yasnippet-0.10.0")
+(require 'yasnippet)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"                 ;; personal snippets
+        ))
+(yas-global-mode 1)
