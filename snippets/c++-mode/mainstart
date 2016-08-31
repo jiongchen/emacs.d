@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: mainstart
+# key: mainstart
+# --
+boost::property_tree::ptree pt;
+zjucad::read_cmdline(argc, argv, pt);
