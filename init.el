@@ -36,13 +36,13 @@
 (add-to-list 'load-path' "~/.emacs.d/local")
 
 
-;; C++ mode
+;; C++ and octave mode
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cxx\\'" . c++-mode))
-
+(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
 ;; Configure package
 (require 'package) ;; You might already have this line
