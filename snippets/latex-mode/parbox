@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: parbox
+# key: par
+# --
+\parbox[$1]{$2\textwidth} {
+  $0
+}
