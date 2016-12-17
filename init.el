@@ -182,3 +182,8 @@ that was stored with ska-point-to-register."
       '("~/.emacs.d/snippets"                 ;; personal snippets
         ))
 (yas-global-mode 1)
+
+
+;; flyspell
+(add-hook 'latex-mode-hook 'flyspell-mode)
+(put 'set-goal-column 'disabled nil)

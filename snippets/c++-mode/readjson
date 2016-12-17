@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: readjson
+# key: readjson
+# --
+Json::Reader reader;
+Json::Value json;
+ifstream ifs(pt.get<string>($0));
+if ( !reader.parse(ifs, json) ) {
+  cerr << "[ERROR] parse json error: " << reader.getFormattedErrorMessages() << endl;
+  return __LINE__;
+}
+ifs.close();
