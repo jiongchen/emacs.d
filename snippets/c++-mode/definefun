@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: definefun
+# key: definefun
+# --
+size_t Nx() const {
+  return dim_;
+}
+int Val(const double *x, double *val) const {
+  return 0;
+}
+int Gra(const double *x, double *gra) const {
+  return 0;
+}
+int Hes(const double *x, vector<Triplet<double>> *hes) const {
+  return 0;
+}
