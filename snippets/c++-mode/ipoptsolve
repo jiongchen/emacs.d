@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: ipoptsolve
+# key: ipoptsolve
+# --
+  SmartPtr<TNLP> optprb = new mtr_reg_problem(energy, constraint, &args[0]);  
+  SmartPtr<IpoptApplication> app = IpoptApplicationFactory();    
+  app->RethrowNonIpoptException(true);    
+  app->Options()->SetNumericValue("tol", 1e-8);
+  app->Options()->SetStringValue("mu_strategy", "adaptive");    
+  ApplicationReturnStatus status;
+  status = app->Initialize();
+  ASSERT(status == Ipopt::Solve_Succeeded);   
+  status = app->OptimizeTNLP(optprb);
+  ASSERT(status == Ipopt::Solve_Succeeded);
