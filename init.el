@@ -187,3 +187,10 @@ that was stored with ska-point-to-register."
 ;; flyspell
 (add-hook 'latex-mode-hook 'flyspell-mode)
 (put 'set-goal-column 'disabled nil)
+
+
+;; neo-tree
+(add-to-list 'load-path "~/.emacs.d/elpa/neotree-0.5.2")
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
