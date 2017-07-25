@@ -196,3 +196,6 @@ that was stored with ska-point-to-register."
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
 (setq dired-dwim-target t)
+
+(require 'helm-config)
+(helm-mode 1)
