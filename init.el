@@ -60,6 +60,8 @@
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)
 (put 'downcase-region 'disabled nil)
 
+;; js
+(setq js-indent-level 2)
 
 ;; Add cmake listfile names to the mode list.
 (setq auto-mode-alist
