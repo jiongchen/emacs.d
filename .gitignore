@@ -7,3 +7,4 @@ tutorial/
 tramp
 session.*
 .yas-compiled-snippets.el
+*.dat

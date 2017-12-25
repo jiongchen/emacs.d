@@ -201,3 +201,12 @@ that was stored with ska-point-to-register."
 
 (require 'helm-config)
 (helm-mode 1)
+
+;; auto complete
+(add-to-list 'load-path "~/.emacs.d/3rd/fuzzy-el")
+(add-to-list 'load-path "~/.emacs.d/3rd/popup-el")
+(add-to-list 'load-path "~/.emacs.d/3rd/auto-complete")
+
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/3rd/auto-complete/dict")
+(ac-config-default)
