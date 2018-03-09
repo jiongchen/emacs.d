@@ -210,3 +210,6 @@ that was stored with ska-point-to-register."
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/3rd/auto-complete/dict")
 (ac-config-default)
+
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
