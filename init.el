@@ -6,7 +6,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (tango-dark))))
+ '(custom-enabled-themes (quote (tango-dark)))
+ '(package-selected-packages
+   (quote
+    (ac-ispell flycheck yasnippet rainbow-delimiters neotree helm gscholar-bibtex dockerfile-mode auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -28,7 +31,7 @@
 
 
 (global-linum-mode t)
-(tool-bar-mode -1)
+;; (tool-bar-mode -1)
 (setq column-number-mode t)
 (setq confirm-kill-emacs 'y-or-n-p)
 
@@ -184,6 +187,7 @@ that was stored with ska-point-to-register."
       '("~/.emacs.d/snippets"                 ;; personal snippets
         ))
 (yas-global-mode 1)
+(setq yas-trigger-key "TAB")
 
 
 ;; flyspell
@@ -202,14 +206,17 @@ that was stored with ska-point-to-register."
 (require 'helm-config)
 (helm-mode 1)
 
-;; auto complete
-(add-to-list 'load-path "~/.emacs.d/3rd/fuzzy-el")
-(add-to-list 'load-path "~/.emacs.d/3rd/popup-el")
-(add-to-list 'load-path "~/.emacs.d/3rd/auto-complete")
+;; ;; auto complete
+;; (add-to-list 'load-path "~/.emacs.d/3rd/fuzzy-el")
+;; (add-to-list 'load-path "~/.emacs.d/3rd/popup-el")
+;; (add-to-list 'load-path "~/.emacs.d/3rd/auto-complete")
 
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/3rd/auto-complete/dict")
-(ac-config-default)
+;; (require 'auto-complete-config)
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/3rd/auto-complete/dict")
+;; (ac-config-default)
 
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+
+(setq exec-path (append "/usr/local/bin" exec-path))
+(setq exec-path (append "/usr/local/texlive/2017/bin/x86_64-darwin" exec-path))
