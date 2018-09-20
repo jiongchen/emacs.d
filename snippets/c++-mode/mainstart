@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 #include <zjucad/ptree/ptree.h>
 
 using namespace std;
@@ -14,6 +15,11 @@ int main(int argc, char *argv[])
 {
   boost::property_tree::ptree pt;
   zjucad::read_cmdline(argc, argv, pt);
+
+  //-> write configuration
+  ofstream json_ofs(outdir+"/config.json");
+  boost::property_tree::write_json(json_ofs, pt, true);
+  json_ofs.close();
 
   cout << "[INFO] done" << endl;
   return 0;
