@@ -7,3 +7,6 @@
 [submodule "3rd/auto-complete"]
 	path = 3rd/auto-complete
 	url = https://github.com/auto-complete/auto-complete.git
+[submodule "3rd/julia-emacs"]
+	path = 3rd/julia-emacs
+	url = https://github.com/JuliaEditorSupport/julia-emacs.git

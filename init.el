@@ -220,3 +220,6 @@ that was stored with ska-point-to-register."
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+(add-to-list 'load-path "~/.emacs.d/3rd/julia-emacs")
+(require 'julia-mode)
