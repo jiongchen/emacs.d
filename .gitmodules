@@ -1,12 +1,3 @@
-[submodule "3rd/fuzzy-el"]
-	path = 3rd/fuzzy-el
-	url = https://github.com/auto-complete/fuzzy-el.git
-[submodule "3rd/popup-el"]
-	path = 3rd/popup-el
-	url = https://github.com/auto-complete/popup-el.git
-[submodule "3rd/auto-complete"]
-	path = 3rd/auto-complete
-	url = https://github.com/auto-complete/auto-complete.git
-[submodule "3rd/julia-emacs"]
-	path = 3rd/julia-emacs
-	url = https://github.com/JuliaEditorSupport/julia-emacs.git
+[submodule "3rd/rust-mode"]
+	path = 3rd/rust-mode
+	url = https://github.com/rust-lang/rust-mode.git
