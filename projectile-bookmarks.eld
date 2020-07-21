@@ -1,0 +1,1 @@
+("~/usr/workspace/Rust/" "~/.emacs.d/")

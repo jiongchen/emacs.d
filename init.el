@@ -9,7 +9,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (cargo rust-mode projectile yasnippet rainbow-delimiters neotree helm flycheck dockerfile-mode avy))))
+    (flycheck-rust cargo rust-mode projectile yasnippet rainbow-delimiters neotree helm flycheck dockerfile-mode avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -131,6 +131,12 @@
 ;; (require 'switch-window)
 ;; (global-set-key (kbd "C-x o") 'switch-window)
 
+;; Rust
+(add-to-list 'load-path "~/.emacs.d/3rd/rust-mode/")
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+;; (add-hook 'rust-mode-hook (lambda () (setq indent-tabs-mode nil)))
+(add-hook 'rust-mode-hook (lambda () (setq tab-width 2)))
 
 ;; Eletric pair
 (electric-pair-mode 1)
