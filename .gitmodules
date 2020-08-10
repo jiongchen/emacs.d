@@ -7,3 +7,6 @@
 [submodule "3rd/auto-complete"]
 	path = 3rd/auto-complete
 	url = https://github.com/auto-complete/auto-complete.git
+[submodule "3rd/rust-mode"]
+	path = 3rd/rust-mode
+	url = https://github.com/rust-lang/rust-mode.git

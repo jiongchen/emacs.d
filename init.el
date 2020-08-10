@@ -7,9 +7,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (tango-dark)))
+ '(custom-safe-themes
+   (quote
+    ("3e52c03d98538c5132e7d71514262dfeabe1acfd6b463db2ae39c59deb69bd83" default)))
  '(package-selected-packages
    (quote
-    (ac-ispell flycheck yasnippet rainbow-delimiters neotree helm gscholar-bibtex dockerfile-mode auto-complete))))
+    (rust-mode exec-path-from-shell ac-ispell flycheck yasnippet rainbow-delimiters neotree helm gscholar-bibtex dockerfile-mode auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -220,3 +223,15 @@ that was stored with ska-point-to-register."
 
 (setq exec-path (append "/usr/local/bin" exec-path))
 (setq exec-path (append "/usr/local/texlive/2017/bin/x86_64-darwin" exec-path))
+
+(getenv "PATH")
+(setenv "PATH"
+	(concat
+	 "/usr/local/texlive/2019/bin/x86_64-darwin/"":"
+	 (getenv "PATH")))
+
+(setq ispell-program-name "/usr/local/bin/ispell")
+
+;; rust
+(add-to-list 'load-path "~/.emacs.d/3rd/rust-mode/")
+(autoload 'rust-mode "rust-mode" nil t)
