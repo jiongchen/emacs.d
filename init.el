@@ -9,7 +9,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (flycheck-rust cargo rust-mode projectile yasnippet rainbow-delimiters neotree helm flycheck dockerfile-mode avy))))
+    (lsp-mode flycheck-rust cargo rust-mode projectile yasnippet rainbow-delimiters neotree helm flycheck dockerfile-mode avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
