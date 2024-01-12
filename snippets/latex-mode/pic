@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: pic
+# key: pic
+# --
+
+\newcommand{\pic}[${1:num}]{\includegraphics[width=${2:width}\textwidth]{${3:img}}}
+$0

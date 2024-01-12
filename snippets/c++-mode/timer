@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: timer
+# key: timer
+# --
+
+${1:timer}.start();
+{
+  $0
+}
+$1.stop();
+auto ${2:var} = $1.elapsed();
