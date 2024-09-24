@@ -232,7 +232,7 @@ that was stored with ska-point-to-register."
 (add-to-list 'load-path "~/.emacs.d/3rd/julia-emacs")
 (require 'julia-mode)
 
-(use-package elpy
-  :ensure t
-  :init
-  (elpy-enable))
+;; (use-package elpy
+;;   :ensure t
+;;   :init
+;;   (elpy-enable))
