@@ -8,3 +8,6 @@ tramp
 session.*
 .yas-compiled-snippets.el
 *.dat
+*cache*
+*.eld
+elpy/
