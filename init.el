@@ -1,22 +1,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Theme
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (tango-dark)))
- '(package-selected-packages
-   (quote
-    (elpy lsp-mode flycheck-rust cargo rust-mode projectile yasnippet rainbow-delimiters neotree helm flycheck dockerfile-mode avy))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
+;; ;; Theme
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(custom-enabled-themes (quote (tango-dark)))
+;;  '(package-selected-packages
+;;    (quote
+;;     (elpy lsp-mode flycheck-rust cargo rust-mode projectile yasnippet rainbow-delimiters neotree helm flycheck dockerfile-mode avy))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
 
 (global-set-key [f11] 'my-fullscreen)
 (defun my-fullscreen ()
@@ -29,8 +28,8 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
-
-(global-linum-mode t)
+;; new setting for line number
+(global-display-line-numbers-mode t)
 (tool-bar-mode -1)
 (setq column-number-mode t)
 (setq confirm-kill-emacs 'y-or-n-p)
@@ -58,7 +57,6 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize) ;; You might already have this line
 
-
 ;; C++ style
 (require 'google-c-style)
 (add-hook 'c-mode-common-hook 'google-set-c-style)
@@ -77,7 +75,6 @@
 (autoload 'cmake-mode "~/.emacs.d/local/cmake-mode.el" t)
 
 
-
 ;; Markdown mode
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
@@ -88,16 +85,13 @@
    "Major mode for editing GitHub Flavored Markdown files" t)
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 
-
-
 ;; Highlight parentheses
-(require 'highlight-parentheses)
-(define-globalized-minor-mode global-highlight-parentheses-mode
-  highlight-parentheses-mode
-  (lambda ()
-    (highlight-parentheses-mode t)))
-(global-highlight-parentheses-mode t)
-
+;;(require 'highlight-parentheses)
+;;(define-globalized-minor-mode global-highlight-parentheses-mode
+;;  highlight-parentheses-mode
+;;  (lambda ()
+;;    (highlight-parentheses-mode t)))
+;;(global-highlight-parentheses-mode t)
 
 ;; Code hiding
 (add-hook 'c-mode-common-hook   'hs-minor-mode)
@@ -114,39 +108,35 @@
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-
-;; Maxima
-(add-to-list 'load-path "/usr/share/maxima/5.32.1/emacs/")
-(autoload 'maxima-mode "maxima" "Maxima mode" t)
-(autoload 'imaxima "imaxima" "Frontend for maxima with Image support" t)
-(autoload 'maxima "maxima" "Maxima interaction" t)
-(autoload 'imath-mode "imath" "Imath mode for math formula input" t)
-(setq imaxima-use-maxima-mode-flag t)
-(add-to-list 'auto-mode-alist '("\\.ma[cx]" . maxima-mode))
+;; ;; Maxima
+;; (add-to-list 'load-path "/usr/share/maxima/5.32.1/emacs/")
+;; (autoload 'maxima-mode "maxima" "Maxima mode" t)
+;; (autoload 'imaxima "imaxima" "Frontend for maxima with Image support" t)
+;; (autoload 'maxima "maxima" "Maxima interaction" t)
+;; (autoload 'imath-mode "imath" "Imath mode for math formula input" t)
+;; (setq imaxima-use-maxima-mode-flag t)
+;; (add-to-list 'auto-mode-alist '("\\.ma[cx]" . maxima-mode))
 
 
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-
 ;; Swith-window
 ;; (require 'switch-window)
 ;; (global-set-key (kbd "C-x o") 'switch-window)
 
-;; Rust
-(add-to-list 'load-path "~/.emacs.d/3rd/rust-mode/")
-(autoload 'rust-mode "rust-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
-;; (add-hook 'rust-mode-hook (lambda () (setq indent-tabs-mode nil)))
-(add-hook 'rust-mode-hook (lambda () (setq tab-width 2)))
+;; ;; Rust
+;; (add-to-list 'load-path "~/.emacs.d/3rd/rust-mode/")
+;; (autoload 'rust-mode "rust-mode" nil t)
+;; (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+;; ;; (add-hook 'rust-mode-hook (lambda () (setq indent-tabs-mode nil)))
+;; (add-hook 'rust-mode-hook (lambda () (setq tab-width 2)))
 
 ;; Eletric pair
 (electric-pair-mode 1)
 
-
 ;; 
 (setq compilation-scroll-output t)
-
 
 ;; avoid jump when scrolling
 (setq scroll-margin 3
@@ -201,7 +191,6 @@ that was stored with ska-point-to-register."
 (add-hook 'latex-mode-hook 'flyspell-mode)
 (put 'set-goal-column 'disabled nil)
 
-
 ;; neo-tree
 (add-to-list 'load-path "~/.emacs.d/elpa/neotree-0.5.2")
 (require 'neotree)
@@ -210,7 +199,10 @@ that was stored with ska-point-to-register."
 
 (setq dired-dwim-target t)
 
-(require 'helm-config)
+;; Load Helm
+(add-to-list 'load-path "~/.emacs.d/elpa/helm-4.0") ; facultative when installed with make install
+(require 'helm)
+(require 'helm-autoloads)
 (helm-mode 1)
 
 ;; auto complete
@@ -222,17 +214,30 @@ that was stored with ska-point-to-register."
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/3rd/auto-complete/dict")
 (ac-config-default)
 
-(require 'dockerfile-mode)
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+;;(require 'dockerfile-mode)
+;;(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
-(add-to-list 'load-path "~/.emacs.d/3rd/julia-emacs")
-(require 'julia-mode)
+;; (add-to-list 'load-path "~/.emacs.d/3rd/julia-emacs")
+;; (require 'julia-mode)
 
 ;; (use-package elpy
 ;;   :ensure t
 ;;   :init
 ;;   (elpy-enable))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(flycheck yasnippet rainbow-delimiters projectile neotree auto-complete)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
