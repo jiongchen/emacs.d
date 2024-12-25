@@ -6,19 +6,21 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (tango-dark)))
+ '(column-number-mode t)
+ '(custom-enabled-themes '(tango-dark))
  '(custom-safe-themes
-   (quote
-    ("3e52c03d98538c5132e7d71514262dfeabe1acfd6b463db2ae39c59deb69bd83" default)))
+   '("3e52c03d98538c5132e7d71514262dfeabe1acfd6b463db2ae39c59deb69bd83" default))
  '(package-selected-packages
-   (quote
-    (rust-mode exec-path-from-shell ac-ispell flycheck yasnippet rainbow-delimiters neotree helm gscholar-bibtex dockerfile-mode auto-complete))))
+   '(rust-mode exec-path-from-shell ac-ispell flycheck yasnippet rainbow-delimiters neotree helm gscholar-bibtex dockerfile-mode auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :stipple nil
+			 ;;:background "#858585"
+			 ;;:foreground "#eeeeec"
+			 :inverse-video nil :box nil :strike-through nil :extend nil :overline nil :underline nil :slant normal :weight normal :height 180 :width normal :foundry "nil" :family "Menlo")))))
 
 
 (global-set-key [f11] 'my-fullscreen)
@@ -50,14 +52,14 @@
 (add-to-list 'auto-mode-alist '("\\.cxx\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
-;; Configure package
-(require 'package) ;; You might already have this line
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize) ;; You might already have this line
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Comment/uncomment this line to enable MELPA Stable if desired.
+;; See `package-archive-priorities` and `package-pinned-packages`.
+;; Most users will not need or want to do this.
+;; (add-to-list 'package-archives
+;;              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
 
 
 ;; C++ style
@@ -78,18 +80,15 @@
 (autoload 'cmake-mode "~/.emacs.d/local/cmake-mode.el" t)
 
 
+;; ;; Markdown mode
+;; (autoload 'markdown-mode "markdown-mode"
+;;    "Major mode for editing Markdown files" t)
+;; (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-;; Markdown mode
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-(autoload 'gfm-mode "gfm-mode"
-   "Major mode for editing GitHub Flavored Markdown files" t)
-(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-
-
+;; (autoload 'gfm-mode "gfm-mode"
+;;    "Major mode for editing GitHub Flavored Markdown files" t)
+;; (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 
 ;; Highlight parentheses
 (require 'highlight-parentheses)
@@ -117,18 +116,17 @@
 
 
 ;; Maxima
-(add-to-list 'load-path "/usr/share/maxima/5.32.1/emacs/")
-(autoload 'maxima-mode "maxima" "Maxima mode" t)
-(autoload 'imaxima "imaxima" "Frontend for maxima with Image support" t)
-(autoload 'maxima "maxima" "Maxima interaction" t)
-(autoload 'imath-mode "imath" "Imath mode for math formula input" t)
-(setq imaxima-use-maxima-mode-flag t)
-(add-to-list 'auto-mode-alist '("\\.ma[cx]" . maxima-mode))
+;; (add-to-list 'load-path "/usr/share/maxima/5.32.1/emacs/")
+;; (autoload 'maxima-mode "maxima" "Maxima mode" t)
+;; (autoload 'imaxima "imaxima" "Frontend for maxima with Image support" t)
+;; (autoload 'maxima "maxima" "Maxima interaction" t)
+;; (autoload 'imath-mode "imath" "Imath mode for math formula input" t)
+;; (setq imaxima-use-maxima-mode-flag t)
+;; (add-to-list 'auto-mode-alist '("\\.ma[cx]" . maxima-mode))
 
 
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
-
 
 ;; Swith-window
 ;; (require 'switch-window)
@@ -162,64 +160,63 @@
 	try-complete-lisp-symbol-partially
 	try-complete-lisp-symbol))
 
-;; mark and jump
-(global-set-key [(control ?\.)] 'ska-point-to-register)
-(global-set-key [(control ?\,)] 'ska-jump-to-register)
-(defun ska-point-to-register()
-  "Store cursorposition _fast_ in a register.
-Use ska-jump-to-register to jump back to the stored
-position."
-  (interactive)
-  (setq zmacs-region-stays t)
-  (point-to-register 8))
+;; ;; mark and jump
+;; (global-set-key [(control ?\.)] 'ska-point-to-register)
+;; (global-set-key [(control ?\,)] 'ska-jump-to-register)
+;; (defun ska-point-to-register()
+;;   "Store cursorposition _fast_ in a register.
+;; Use ska-jump-to-register to jump back to the stored
+;; position."
+;;   (interactive)
+;;   (setq zmacs-region-stays t)
+;;   (point-to-register 8))
 
-(defun ska-jump-to-register()
-  "Switches between current cursorposition and position
-that was stored with ska-point-to-register."
-  (interactive)
-  (setq zmacs-region-stays t)
-  (let ((tmp (point-marker)))
-        (jump-to-register 8)
-        (set-register 8 tmp)))
-
-
-;; yasnippet
-(add-to-list 'load-path "~/.emacs.d/elpa/yasnippet-0.10.0")
-(require 'yasnippet)
-(setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"                 ;; personal snippets
-        ))
-(yas-global-mode 1)
-(setq yas-trigger-key "TAB")
+;; (defun ska-jump-to-register()
+;;   "Switches between current cursorposition and position
+;; that was stored with ska-point-to-register."
+;;   (interactive)
+;;   (setq zmacs-region-stays t)
+;;   (let ((tmp (point-marker)))
+;;         (jump-to-register 8)
+;;         (set-register 8 tmp)))
 
 
-;; flyspell
-(add-hook 'latex-mode-hook 'flyspell-mode)
-(put 'set-goal-column 'disabled nil)
+;; ;; yasnippet
+;; (add-to-list 'load-path "~/.emacs.d/elpa/yasnippet-0.10.0")
+;; (require 'yasnippet)
+;; (setq yas-snippet-dirs
+;;       '("~/.emacs.d/snippets"                 ;; personal snippets
+;;         ))
+;; (yas-global-mode 1)
+;; (setq yas-trigger-key "TAB")
 
 
-;; neo-tree
-(add-to-list 'load-path "~/.emacs.d/elpa/neotree-0.5.2")
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+;; ;; flyspell
+;; (add-hook 'latex-mode-hook 'flyspell-mode)
+
+
+;; ;; neo-tree
+;; (add-to-list 'load-path "~/.emacs.d/elpa/neotree-0.5.2")
+;; (require 'neotree)
+;; (global-set-key [f8] 'neotree-toggle)
+;; (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
 (setq dired-dwim-target t)
 
 (require 'helm-config)
 (helm-mode 1)
 
-;; ;; auto complete
-;; (add-to-list 'load-path "~/.emacs.d/3rd/fuzzy-el")
-;; (add-to-list 'load-path "~/.emacs.d/3rd/popup-el")
-;; (add-to-list 'load-path "~/.emacs.d/3rd/auto-complete")
+;; auto complete
+(add-to-list 'load-path "~/.emacs.d/3rd/fuzzy-el")
+(add-to-list 'load-path "~/.emacs.d/3rd/popup-el")
+(add-to-list 'load-path "~/.emacs.d/3rd/auto-complete")
 
-;; (require 'auto-complete-config)
-;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/3rd/auto-complete/dict")
-;; (ac-config-default)
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/3rd/auto-complete/dict")
+(ac-config-default)
 
-(require 'dockerfile-mode)
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+;; (require 'dockerfile-mode)
+;; (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 (setq exec-path (append "/usr/local/bin" exec-path))
 (setq exec-path (append "/usr/local/texlive/2017/bin/x86_64-darwin" exec-path))
@@ -235,3 +232,4 @@ that was stored with ska-point-to-register."
 ;; rust
 (add-to-list 'load-path "~/.emacs.d/3rd/rust-mode/")
 (autoload 'rust-mode "rust-mode" nil t)
+(put 'set-goal-column 'disabled nil)
