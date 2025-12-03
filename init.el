@@ -48,6 +48,9 @@
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . latex-mode))
 
+;; (add-hook 'c++-mode-hook 'eglot-ensure)
+;; (add-hook 'c-mode-hook  'eglot-ensure)
+
 ;; Configure package
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
@@ -221,6 +224,9 @@ that was stored with ska-point-to-register."
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
+;; Tells Projectile to use Emacs's default completion
+(setq projectile-completion-system 'default)
+
 ;; (add-to-list 'load-path "~/.emacs.d/3rd/julia-emacs")
 ;; (require 'julia-mode)
 
@@ -234,7 +240,7 @@ that was stored with ska-point-to-register."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(flycheck yasnippet rainbow-delimiters projectile neotree auto-complete)))
+   '(outline-indent elpy flycheck yasnippet rainbow-delimiters projectile neotree auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -242,4 +248,44 @@ that was stored with ska-point-to-register."
  ;; If there is more than one, they won't work right.
  )
 
-(add-hook 'python-mode-hook 'hs-minor-mode)
+;; (use-package elpy
+;;   :ensure t
+;;   :init
+;;   (elpy-enable))
+
+;; python
+(load-file "~/.emacs.d/local/emacs-for-python/epy-init.el")
+
+(add-to-list 'load-path "~/.emacs.d/local/emacs-for-python/") ;; tell where to load the various files
+(require 'epy-setup)      ;; It will setup other loads, it is required!
+(require 'epy-python)     ;; If you want the python facilities [optional]
+(require 'epy-completion) ;; If you want the autocompletion settings [optional]
+(require 'epy-editing)    ;; For configurations related to editing [optional]
+(require 'epy-bindings)   ;; For my suggested keybindings [optional]
+(require 'epy-nose)       ;; For nose integration
+
+(require 'highlight-indentation)
+(add-hook 'python-mode-hook 'highlight-indentation)
+;; (add-hook 'python-mode-hook #'hs-minor-mode)
+
+(global-hl-line-mode t) ;; To enable
+(set-face-background 'hl-line "black")
+
+(use-package outline-indent
+  :ensure t
+  :custom
+  (outline-indent-ellipsis " ▼ "))
+
+(add-hook 'python-mode-hook #'outline-indent-minor-mode)
+(add-hook 'python-ts-mode-hook #'outline-indent-minor-mode)
+(define-key outline-minor-mode-map (kbd "<f1>") 'outline-toggle-children)
+(define-key outline-minor-mode-map (kbd "<f2>") 'outline-indent-open-fold-rec)
+
+(fido-mode 0)
+
+(require 'ansi-color)
+(defun my-colorize-compilation-buffer ()
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
+(add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer)

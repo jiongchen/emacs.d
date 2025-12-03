@@ -10,3 +10,4 @@ session.*
 *.dat
 *cache*
 *.eld
+elpy/
