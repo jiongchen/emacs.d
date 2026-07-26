@@ -28,6 +28,48 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
+;; Welcome page
+(require 'button)
+(require 'recentf)
+(recentf-mode 1)
+
+(define-derived-mode my-welcome-mode special-mode "Welcome"
+  "Major mode for the Emacs welcome page."
+  (display-line-numbers-mode -1))
+
+(defun my-welcome-page ()
+  "Create and return the Emacs welcome buffer."
+  (let ((buffer (get-buffer-create "*Welcome*")))
+    (with-current-buffer buffer
+      (let ((inhibit-read-only t))
+        (erase-buffer)
+        (insert "\n\n")
+        (insert (propertize "Welcome to Emacs\n"
+                            'face '(:height 1.8 :weight bold)))
+        (insert (format "Version %s\n\n" emacs-version))
+        (insert-text-button "Open a file"
+                            'action (lambda (_button)
+                                      (call-interactively #'helm-find-files))
+                            'follow-link t)
+        (insert "    Press C-f\n\n")
+        (insert-text-button "Open a recent file"
+                            'action (lambda (_button)
+                                      (call-interactively #'recentf-open-files))
+                            'follow-link t)
+        (insert "\n\n")
+        (insert-text-button "Browse home directory"
+                            'action (lambda (_button)
+                                      (dired "~"))
+                            'follow-link t)
+        (insert "\n\n")
+        (insert "Use Tab to move between choices and Enter to select.\n")
+        (goto-char (point-min))
+        (my-welcome-mode)))
+    buffer))
+
+(setq inhibit-startup-screen t
+      initial-buffer-choice #'my-welcome-page)
+
 ;; new setting for line number
 (global-display-line-numbers-mode t)
 ;; (tool-bar-mode -1)
