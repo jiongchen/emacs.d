@@ -199,11 +199,28 @@
 
 (setq dired-dwim-target t)
 
-;; ;; Load Helm
-;; (add-to-list 'load-path "~/.emacs.d/elpa/helm-4.0") ; facultative when installed with make install
-;; (require 'helm)
-;; (require 'helm-autoloads)
-;; (helm-mode 1)
+;; Helm: incremental navigation for commands, buffers, and files.
+(unless (package-installed-p 'helm)
+  (unless package-archive-contents
+    (package-refresh-contents))
+  (package-install 'helm))
+
+(require 'helm-config)
+(helm-mode 1)
+
+(global-set-key [remap execute-extended-command] #'helm-M-x)
+(global-set-key [remap switch-to-buffer] #'helm-mini)
+(global-set-key [remap find-file] #'helm-find-files)
+(global-set-key (kbd "C-f") #'helm-find-files)
+
+(defun my-helm-M-x-complete-command ()
+  "Complete the Helm M-x input with the selected command."
+  (interactive)
+  (helm-set-pattern (substring-no-properties (helm-get-selection))))
+
+(with-eval-after-load 'helm-command
+  (define-key helm-M-x-map (kbd "TAB") #'my-helm-M-x-complete-command)
+  (define-key helm-M-x-map (kbd "<tab>") #'my-helm-M-x-complete-command))
 
 ;; auto complete
 (add-to-list 'load-path "~/.emacs.d/3rd/fuzzy-el")
@@ -234,7 +251,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(flycheck yasnippet rainbow-delimiters neotree auto-complete)))
+   '(helm flycheck yasnippet rainbow-delimiters neotree auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
