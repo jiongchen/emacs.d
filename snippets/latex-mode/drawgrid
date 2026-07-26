@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: drawgrid
+# key: drawgrid
+# --
+
+\draw[gray] (-4, -1) grid (4, 1);

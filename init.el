@@ -1,27 +1,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Theme
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(custom-enabled-themes '(tango-dark))
- '(custom-safe-themes
-   '("3e52c03d98538c5132e7d71514262dfeabe1acfd6b463db2ae39c59deb69bd83" default))
- '(package-selected-packages
-   '(rust-mode exec-path-from-shell ac-ispell flycheck yasnippet rainbow-delimiters neotree helm gscholar-bibtex dockerfile-mode auto-complete)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil
-			 ;;:background "#858585"
-			 ;;:foreground "#eeeeec"
-			 :inverse-video nil :box nil :strike-through nil :extend nil :overline nil :underline nil :slant normal :weight normal :height 180 :width normal :foundry "nil" :family "Menlo")))))
-
+;; ;; Theme
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(custom-enabled-themes (quote (tango-dark)))
+;;  '(package-selected-packages
+;;    (quote
+;;     (elpy lsp-mode flycheck-rust cargo rust-mode projectile yasnippet rainbow-delimiters neotree helm flycheck dockerfile-mode avy))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
 
 (global-set-key [f11] 'my-fullscreen)
 (defun my-fullscreen ()
@@ -34,9 +28,10 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
-
-(global-linum-mode t)
+;; new setting for line number
+(global-display-line-numbers-mode t)
 ;; (tool-bar-mode -1)
+
 (setq column-number-mode t)
 (setq confirm-kill-emacs 'y-or-n-p)
 
@@ -50,7 +45,9 @@
 (add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cxx\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
+(add-to-list 'auto-mode-alist '("\\.tex\\'" . latex-mode))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -60,7 +57,6 @@
 ;; (add-to-list 'package-archives
 ;;              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
-
 
 ;; C++ style
 (require 'google-c-style)
@@ -79,25 +75,23 @@
 	   auto-mode-alist))
 (autoload 'cmake-mode "~/.emacs.d/local/cmake-mode.el" t)
 
+;; Markdown mode
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-;; ;; Markdown mode
-;; (autoload 'markdown-mode "markdown-mode"
-;;    "Major mode for editing Markdown files" t)
-;; (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-;; (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-;; (autoload 'gfm-mode "gfm-mode"
-;;    "Major mode for editing GitHub Flavored Markdown files" t)
-;; (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+(autoload 'gfm-mode "gfm-mode"
+   "Major mode for editing GitHub Flavored Markdown files" t)
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 
 ;; Highlight parentheses
-(require 'highlight-parentheses)
-(define-globalized-minor-mode global-highlight-parentheses-mode
-  highlight-parentheses-mode
-  (lambda ()
-    (highlight-parentheses-mode t)))
-(global-highlight-parentheses-mode t)
-
+;;(require 'highlight-parentheses)
+;;(define-globalized-minor-mode global-highlight-parentheses-mode
+;;  highlight-parentheses-mode
+;;  (lambda ()
+;;    (highlight-parentheses-mode t)))
+;;(global-highlight-parentheses-mode t)
 
 ;; Code hiding
 (add-hook 'c-mode-common-hook   'hs-minor-mode)
@@ -114,8 +108,7 @@
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-
-;; Maxima
+;; ;; Maxima
 ;; (add-to-list 'load-path "/usr/share/maxima/5.32.1/emacs/")
 ;; (autoload 'maxima-mode "maxima" "Maxima mode" t)
 ;; (autoload 'imaxima "imaxima" "Frontend for maxima with Image support" t)
@@ -126,20 +119,24 @@
 
 
 ;; Flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Swith-window
 ;; (require 'switch-window)
 ;; (global-set-key (kbd "C-x o") 'switch-window)
 
+;; ;; Rust
+;; (add-to-list 'load-path "~/.emacs.d/3rd/rust-mode/")
+;; (autoload 'rust-mode "rust-mode" nil t)
+;; (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+;; ;; (add-hook 'rust-mode-hook (lambda () (setq indent-tabs-mode nil)))
+;; (add-hook 'rust-mode-hook (lambda () (setq tab-width 2)))
 
 ;; Eletric pair
 (electric-pair-mode 1)
 
-
 ;; 
 (setq compilation-scroll-output t)
-
 
 ;; avoid jump when scrolling
 (setq scroll-margin 3
@@ -194,7 +191,6 @@
 ;; ;; flyspell
 ;; (add-hook 'latex-mode-hook 'flyspell-mode)
 
-
 ;; ;; neo-tree
 ;; (add-to-list 'load-path "~/.emacs.d/elpa/neotree-0.5.2")
 ;; (require 'neotree)
@@ -203,8 +199,11 @@
 
 (setq dired-dwim-target t)
 
-(require 'helm-config)
-(helm-mode 1)
+;; ;; Load Helm
+;; (add-to-list 'load-path "~/.emacs.d/elpa/helm-4.0") ; facultative when installed with make install
+;; (require 'helm)
+;; (require 'helm-autoloads)
+;; (helm-mode 1)
 
 ;; auto complete
 (add-to-list 'load-path "~/.emacs.d/3rd/fuzzy-el")
@@ -215,21 +214,30 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/3rd/auto-complete/dict")
 (ac-config-default)
 
-;; (require 'dockerfile-mode)
-;; (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+;;(require 'dockerfile-mode)
+;;(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
-(setq exec-path (append "/usr/local/bin" exec-path))
-(setq exec-path (append "/usr/local/texlive/2017/bin/x86_64-darwin" exec-path))
+;; (projectile-mode +1)
+;; (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+;; (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
-(getenv "PATH")
-(setenv "PATH"
-	(concat
-	 "/usr/local/texlive/2019/bin/x86_64-darwin/"":"
-	 (getenv "PATH")))
+;; (add-to-list 'load-path "~/.emacs.d/3rd/julia-emacs")
+;; (require 'julia-mode)
 
-(setq ispell-program-name "/usr/local/bin/ispell")
-
-;; rust
-(add-to-list 'load-path "~/.emacs.d/3rd/rust-mode/")
-(autoload 'rust-mode "rust-mode" nil t)
-(put 'set-goal-column 'disabled nil)
+;; (use-package elpy
+;;   :ensure t
+;;   :init
+;;   (elpy-enable))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(flycheck yasnippet rainbow-delimiters neotree auto-complete)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
